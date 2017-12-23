@@ -1,8 +1,6 @@
 # Visualizing Optimization Algorithms
 
-\begin{equation}
-f(x)=x
-\end{equation}
+$f(x)=x$
 
 ![Venkataraman](https://github.com/ddfabbro/optimization/blob/master/cost_functions/3dplot.jpg)
 
