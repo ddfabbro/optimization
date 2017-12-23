@@ -8,39 +8,9 @@ Created on Mon Nov 13 19:58:59 2017
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-
-class MathFunction():
-   
-    def sphere(self,X):
-        """
-        In: numpy.array([x1,x2,...,xn])
-        Out: float(f(x1,x2,...,xn))
-        """
-        return np.sum(X**2)
-   
-    def venkataraman(self,X):
-        """
-        In: numpy.array([x1,x2,...,xn])
-        Out: float(f(x1,x2,...,xn))
-      
-        Source: Venkataraman, P. (2009). Applied optimization with MATLAB programming.
-        """
-        return 3*(np.sin(0.5+0.25*X[0]*X[1]))*np.cos(X[0])
-   
-    def branin(self,X):
-        """
-        In: numpy.array([x1,x2,...,xn])
-        Out: float(f(x1,x2,...,xn))
-      
-        Source: https://www.sfu.ca/~ssurjano/branin.html
-        """
-        a=1.
-        b=5.1/(4.*np.pi**2.)
-        c=5./np.pi
-        r=6.
-        s=10.
-        t=1./(8.*np.pi)
-        return a*(X[1]-b*X[0]**2+c*X[0]-r)**2+s*(1-t)*np.cos(X[0])+s
+import sys
+sys.path.append('../cost_functions')
+from benchmark import ContinuousFunction
 
 class GradientDescent():
    
@@ -75,7 +45,7 @@ class GradientDescent():
 
 if __name__ == "__main__":
    
-    function = MathFunction()
+    function = ContinuousFunction()
     optimizer = GradientDescent(function.venkataraman)
     X0 = np.array([.5,.5]) #initial guess
     optimizer_results = optimizer.search(X0,.33,10)

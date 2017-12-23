@@ -9,8 +9,8 @@ import os
 import numpy as np 
 import matplotlib.pyplot as plt
 import sys
-sys.path.append('../gradient_descent')
-from gradient_descent import MathFunction
+sys.path.append('../cost_functions')
+from benchmark import ContinuousFunction
 
 class EvolutionaryAlgorithm():
     
@@ -106,7 +106,7 @@ if __name__ == "__main__":
    
     np.random.seed(0)
    
-    function = MathFunction()
+    function = ContinuousFunction()
     ecosystem = EvolutionaryAlgorithm('min',function.venkataraman,20,2,[-5,5])
     optimizer_results =ecosystem.evolve(.8,.1,10)
    
