@@ -1,10 +1,10 @@
 # Visualizing Optimization Algorithms
 
-## Gradient Descent
+## Local Optimization
 
 ![Gradient Descent](https://github.com/ddfabbro/optimization/blob/master/gradient_descent/descent.gif)
 
-## Genetic Algorithm
+## Global Optimization
 
 ![Genetic Algorithm](https://github.com/ddfabbro/optimization/blob/master/genetic_algorithm/evolution.gif)
 
