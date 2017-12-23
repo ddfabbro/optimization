@@ -55,9 +55,7 @@ class EvolutionaryAlgorithm():
         seed = np.random.rand()
         for i, fitness in enumerate(roulette_array):
             if seed <= fitness:
-                break
-      
-        return population[i]
+                return population[i]
    
     def population_fitness(self,population):
         return np.array([self.signal*self.fitness(X) for X in population])
@@ -69,24 +67,24 @@ class EvolutionaryAlgorithm():
             self.population_fitness_ = self.population_fitness(population)
         return population[np.where(self.population_fitness_==np.max(self.population_fitness_))][0]
 
-    def evolve(self,p_crossover,p_mutation,iterations):
+    def evolve(self,p_crossover,p_mutation,generations):
         optimization_process = {'solutions': [], 'output': []}
-        population = self.new_population()
+        self.population = self.new_population()
       
-        for generations in range(iterations):
-            self.population_fitness_ = self.population_fitness(population)
-            optimization_process['solutions'].append(population)
+        for generation in range(generations):
+            self.population_fitness_ = self.population_fitness(self.population)
+            optimization_process['solutions'].append(self.population)
             optimization_process['output'].append(self.signal*self.population_fitness_)
              
             parents_list = []
              
             #Elitism
-            parents_list.append(self.best(population))
+            parents_list.append(self.best(self.population))
              
             #Crossover
             while len(parents_list) < self.population_size:
-                parents = np.array([self.roulette(population),
-                                    self.roulette(population)])
+                parents = np.array([self.roulette(self.population),
+                                    self.roulette(self.population)])
                 if np.random.rand() < p_crossover:
                     offspring = self.crossover(parents)
                     parents_list.append(offspring)
@@ -98,7 +96,7 @@ class EvolutionaryAlgorithm():
                 if np.random.rand() < p_mutation :
                     individual = self.mutation(individual)
          
-            population = np.array(parents_list)
+            self.population = np.array(parents_list)
             
         return optimization_process
    
