@@ -31,5 +31,5 @@ for i, generation in enumerate(optimizer_results['solutions']):
     plt.savefig('generation'+str(i)+'.jpg')
    
 #Create .gif
-os.system('convert -delay 20 -loop 0 *.jpg evolution.gif')
+os.system('convert -delay 20 -loop 0 *.jpg images/evolution.gif')
 os.system('rm *.jpg')
