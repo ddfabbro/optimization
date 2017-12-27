@@ -8,7 +8,8 @@ Created on Sat Dec 23 01:03:24 2017
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from benchmark import ContinuousFunction
+import sys; sys.path.append('../../')
+from pyooopt.cost_functions import ContinuousFunction
 
 function = ContinuousFunction()
 

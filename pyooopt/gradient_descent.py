@@ -5,12 +5,7 @@ Created on Mon Nov 13 19:58:59 2017
 
 @author: davi
 """
-import os
 import numpy as np
-import matplotlib.pyplot as plt
-import sys
-sys.path.append('../cost_functions')
-from benchmark import ContinuousFunction
 
 class GradientDescent():
    
@@ -42,28 +37,3 @@ class GradientDescent():
             X1 = X - a*self.gradient(X)
             X = np.copy(X1)
         return optimization_process
-
-if __name__ == "__main__":
-   
-    function = ContinuousFunction()
-    optimizer = GradientDescent(function.venkataraman)
-    X0 = np.array([.5,.5]) #initial guess
-    optimizer_results = optimizer.search(X0,.33,10)
-   
-    #PLOTTING
-    x1 = np.linspace(-5, 5, 100)
-    x2 = np.linspace(-5, 5, 100)
-    X = np.array(np.meshgrid(x1, x2))
-    z = function.venkataraman(X)
-   
-    plt.contour(x1,x2,z,np.arange(-3.3, 3.5, .25).tolist(),cmap='jet')
-   
-    for i,solution in enumerate(optimizer_results['solution']):
-        plt.figure()
-        plt.contour(x1,x2,z,np.arange(-3.3, 3.5, .25).tolist(),cmap='jet')
-        plt.scatter(solution[0],solution[1],c=[0,0,0],zorder=1e+3)
-        plt.savefig('iteration'+str(i)+'.jpg')
-   
-    #Create .gif
-    os.system('convert -delay 20 -loop 0 *.jpg descent.gif')
-    os.system('rm *.jpg')
