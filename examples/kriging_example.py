@@ -18,13 +18,20 @@ class MyKriging(kriging):
         zs = np.array([self.predict([x,y]) for x,y in zip(np.ravel(X), np.ravel(Y))])
         Z = zs.reshape(X.shape)
         
-        plt.figure()
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
         plt.contour(X,Y,Z,np.arange(-3.3, 3.5, .25).tolist(), cmap='jet')
         solution = [np.where(Z==np.min(Z))[0][0],np.where(Z==np.min(Z))[1][0]]
         plt.scatter(X[solution[0],solution[1]],Y[solution[0],solution[1]],
                     c='black',edgecolors='white',s=75,zorder=1000)
         plt.xlim(0,1)
         plt.ylim(0,1)
+        real_ticks = np.array([-4,-2,0,2,4])
+        ticks = (real_ticks+5)/10.
+        plt.xticks(ticks)
+        ax.set_xticklabels(real_ticks)
+        plt.yticks(ticks)
+        ax.set_yticklabels(real_ticks)
         plt.savefig('iteration'+str(i)+'.jpg')
 
 def testfun(f,X):
