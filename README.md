@@ -13,3 +13,5 @@
 ![Genetic Algorithm](https://github.com/ddfabbro/pyOOopt/blob/master/examples/images/evolution.gif)
 
 ## Blackbox Optimization
+
+![Blackbox Algorithm](https://github.com/ddfabbro/pyOOopt/blob/master/examples/images/kriging.gif)
